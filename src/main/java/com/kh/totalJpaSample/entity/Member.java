@@ -14,7 +14,11 @@ import java.time.LocalDateTime;
 public class Member {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column (name = "member_id")
     private Long id;
+
+    private String userId;
+
     @Column(nullable = false) // NULL을 허용하지 않음
     private String name;
     private String password;

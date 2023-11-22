@@ -69,6 +69,7 @@ class ItemRepositoryTest {
         for(Item item : itemList) {
             System.out.println(item);
         }
+
     }
     @Test
     @DisplayName("주어진 가격보다 싼 제품 조회")
