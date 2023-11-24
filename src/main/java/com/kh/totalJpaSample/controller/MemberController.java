@@ -31,6 +31,12 @@ public class MemberController {
         List<MemberDto> list = memberService.getMemberList();
         return ResponseEntity.ok(list);
     }
+    // 로그인
+    @PostMapping("/login")
+    public ResponseEntity<Boolean> memberLogin(@RequestBody MemberDto memberDto) {
+        boolean istrue = memberService.MemberLogin(memberDto.getEmail(), memberDto.getPassword());
+        return ResponseEntity.ok(istrue);
+    }
     // 회원 상세 조회
     @GetMapping("/detail/{email}")
     public ResponseEntity<MemberDto> memberDetail(@PathVariable String email) {

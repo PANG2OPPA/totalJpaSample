@@ -4,6 +4,7 @@ import com.kh.totalJpaSample.dto.MemberDto;
 import com.kh.totalJpaSample.entity.Member;
 import com.kh.totalJpaSample.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +15,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
+@Slf4j
 @Service // 해당 객체를 빈으로 등록
 @RequiredArgsConstructor // 매개변수가 전부 포함된 생성자를 자동으로 생성 해줌
 public class MemberService {
@@ -41,6 +44,12 @@ public class MemberService {
             memberDtos.add(convertEntityToDto(member));
         }
         return memberDtos;
+    }
+    public Boolean MemberLogin(String email,String pwd){
+        Boolean isId =memberRepository.existsByEmail(email);
+        Boolean isPwd=memberRepository.existsByPassword(pwd);
+        if (isId && isPwd){return true;
+        } else return false;
     }
     //페이지네이션 조회
     public List<MemberDto> getMemberList(int page, int size) {
